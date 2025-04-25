@@ -63,7 +63,7 @@ function exoC() {
         nom = prompt("Merci d'entrer un nom valide");
     }
     let age = prompt("Entrez vôtre age").trim();
-    while (isNaN(age)|| age == "") {
+    while (isNaN(age) || age == "") {
         age = prompt("Merci d'entrer un age valide");
     }
 
@@ -92,13 +92,13 @@ function draw(a) {
     let previousX = -1;
     for (let i = 0; i < a.length; i++) {
         if (Math.round(previousX) != Math.round(i * wFactor)) {
-            ctx.moveTo(i * wFactor,a[i]);
-            ctx.lineTo(i+1 * wFactor, a[i+1]);
+            ctx.moveTo(i * wFactor, a[i]);
+            ctx.lineTo(i + 1 * wFactor, a[i + 1]);
             ctx.stroke();
-            console.log("x = " + i * wFactor + " y = " + a[i]); 
+            console.log("x = " + i * wFactor + " y = " + a[i]);
             previousX = i * wFactor;
         }
-        if (i > a.length) 
+        if (i > a.length)
             break;
     }
     console.log("fini");
@@ -128,24 +128,24 @@ function capitalize(txt) {
 
 
 function countOccurences(txt, word) {
-    return txt.split(word).length-1;
+    return txt.split(word).length - 1;
 }
 
-function truncateString(txt,len) {
+function truncateString(txt, len) {
     if (txt.length >= len)
-        return txt.slice(0,len) + "...";
+        return txt.slice(0, len) + "...";
     return txt;
 }
 
-function regCountOccurences(txt,word) {
-    result = txt.match(new RegExp(word)); 
-    return result ? result.length:0; 
+function regCountOccurences(txt, word) {
+    result = txt.match(new RegExp(word));
+    return result ? result.length : 0;
 }
 
 
 function phrase() {
     let phrase = "Le javascript est super";
-    let mot = phrase.slice(phrase.search("javascript"),"javascript".length + phrase.search("javascript"));
+    let mot = phrase.slice(phrase.search("javascript"), "javascript".length + phrase.search("javascript"));
     console.log(mot);
 }
 
@@ -161,10 +161,10 @@ function clearText() {
 
 
 function findNextSquare(sq) {
-    return Math.sqrt(sq)%1? -1 : Math.pow(Math.sqrt(sq)+1,2);
+    return Math.sqrt(sq) % 1 ? -1 : Math.pow(Math.sqrt(sq) + 1, 2);
 }
 
-function validatePIN (pin) {
+function validatePIN(pin) {
     return /^[0-9]{4}$|^[0-9]{6}$/.test(pin);
 }
 
@@ -177,7 +177,7 @@ function accum(s) {
             result += item.toLowerCase();
         }
         result += "-";
-    });  
+    });
     return result.slice(0, -1);
 }
 
@@ -186,3 +186,79 @@ const binaryArrayToNumber = arr => {
     return parseInt(arr.join(""), 2);
 }
 
+
+
+
+function cinema() {
+    //      ---ETAPE 1 :--- 
+    const prixBase = 12;
+
+    let nom = prompt("Entrez vôtre nom").trim();
+    while (nom == "") {
+        nom = prompt("Merci d'entrer un nom valide");
+    }
+    // let prenom = prompt("Entrez vôtre prenom").trim();
+    // while (prenom == "") {
+    //     prenom = prompt("Merci d'entrer un prenom valide");
+    // }
+
+    age = parseInt(prompt("Merci d'entrer un age valide"));
+
+    let student = confirm("êtes vous étudiant ?");
+
+    ammount = parseInt(prompt("Entrez le nombre de tickets"));
+
+
+
+    
+    //      ---ETAPE 5 :---
+    if (age = "" || isNaN(age)) {
+        alert("age invalide");
+    }
+    if (ammount <=0) {
+        alert("tu dois au moins acheter 1 ticket")
+    }
+//    if (student != "oui" && student != "non") {
+//        alert("entrez oui ou non");
+//    }
+
+
+
+    //      ---ETAPE 2 :---
+
+    let remiseAge = 1;
+    if (age < 12) {
+        remiseAge = 0.5;
+    } else if (age > 60) {
+        remiseAge = 0.7;
+    }
+
+    let remiseEtudiant = 1;
+    if (student == true) {
+        remiseEtudiant = 0.8;
+    }
+
+    let remiseBillet = 1;
+    if (ammount >= 3) {
+        remiseBillet = 0.9;
+    }
+
+    //      ---ETAPE 3 :---
+
+    prixFinal = prixBase * ammount;
+    prixFinal *= remiseEtudiant;
+    prixFinal *= remiseAge * remiseBillet
+    prixFinal = prixFinal.toFixed(2);
+
+    //      ---ETAPE 4 :---
+
+    nom = nom.split(' ');
+    prenom = nom[0];
+    nom = nom[1];
+    let shortName = nom.slice(0, 3);
+    shortName = shortName.toUpperCase();
+    console.log(prenom.length);
+
+    alert("Bonjour " + prenom + " " + nom + ", ton nom commence par " + shortName + ", tu as " + age + " ans et tu paie " + prixFinal + " € pour les " + ammount + " tickets.");
+
+}
