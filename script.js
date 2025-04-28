@@ -193,20 +193,19 @@ function cinema() {
     //      ---ETAPE 1 :--- 
     const prixBase = 12;
 
+
     let nom = prompt("Entrez vôtre nom").trim();
     while (nom == "") {
         nom = prompt("Merci d'entrer un nom valide");
     }
-    // let prenom = prompt("Entrez vôtre prenom").trim();
-    // while (prenom == "") {
-    //     prenom = prompt("Merci d'entrer un prenom valide");
-    // }
 
     age = parseInt(prompt("Merci d'entrer un age valide"));
+    console.log(age);
 
     let student = confirm("êtes vous étudiant ?");
 
     ammount = parseInt(prompt("Entrez le nombre de tickets"));
+
 
 
 
@@ -227,28 +226,48 @@ function cinema() {
     //      ---ETAPE 2 :---
 
     let remiseAge = 1;
-    if (age < 12) {
+    let remiseEtudiant = 1;
+    let remiseBillet = 1;
+    
+    if (age <= 12) {
         remiseAge = 0.5;
-    } else if (age > 60) {
+        console.log("remise enfant");
+    } else if (age >= 60) {
         remiseAge = 0.7;
+        console.log("remise senior");
+    } else {
+        remiseAge = 1;
     }
 
-    let remiseEtudiant = 1;
     if (student == true) {
         remiseEtudiant = 0.8;
+        console.log("remise étudiant");
     }
 
-    let remiseBillet = 1;
     if (ammount >= 3) {
         remiseBillet = 0.9;
+        console.log("remise groupe");
     }
 
+
+    // prixBase = prixBase * remise
+    // 100€     =  100€    * 0.5 -> 100 - 50%
+
+    // 1 - x/100
+
+
+
     //      ---ETAPE 3 :---
+    console.log(remiseAge);
 
     prixFinal = prixBase * ammount;
+    console.log(prixFinal);
+    prixFinal *= remiseAge;
     prixFinal *= remiseEtudiant;
-    prixFinal *= remiseAge * remiseBillet
+    prixFinal *= remiseBillet;
+    console.log(prixFinal);
     prixFinal = prixFinal.toFixed(2);
+    console.log(prixFinal);
 
     //      ---ETAPE 4 :---
 
@@ -262,3 +281,54 @@ function cinema() {
     alert("Bonjour " + prenom + " " + nom + ", ton nom commence par " + shortName + ", tu as " + age + " ans et tu paie " + prixFinal + " € pour les " + ammount + " tickets.");
 
 }
+
+
+
+
+
+
+
+// exercices fonctions
+
+function bonjourToi(prenom) {
+    console.log("bonjour " + prenom);
+}
+
+function addition(a,b) {
+    return a + b;
+}
+
+
+function estPair(n) {
+    return n % 2 == 0;
+}
+
+function calculerMoyenne(noteA, noteB, noteC) {
+    return (noteA + noteB + noteC) / 3;
+}
+
+
+function plusGrand(a, b) {
+    if (a > b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+
+
+
+function revelerAnimal(magie) {
+    magie = parseInt(magie);
+    const listeAnimaux = ["licorne", "grenouille", "dragon", "hibou", "escargot"];
+    if (magie.isNaN || magie > 5) {
+        return "Chiffre inconnu est trop magique pour être interprété";
+    }
+    return listeAnimaux[magie - 1];
+}
+
+
+function exoFonctionB() {
+    console.log(revelerAnimal(prompt("entrer un nombre entre 1 et 5")));
+}
+
