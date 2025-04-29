@@ -209,17 +209,17 @@ function cinema() {
 
 
 
-    
+
     //      ---ETAPE 5 :---
     if (age = "" || isNaN(age)) {
         alert("age invalide");
     }
-    if (ammount <=0) {
+    if (ammount <= 0) {
         alert("tu dois au moins acheter 1 ticket")
     }
-//    if (student != "oui" && student != "non") {
-//        alert("entrez oui ou non");
-//    }
+    //    if (student != "oui" && student != "non") {
+    //        alert("entrez oui ou non");
+    //    }
 
 
 
@@ -228,7 +228,7 @@ function cinema() {
     let remiseAge = 1;
     let remiseEtudiant = 1;
     let remiseBillet = 1;
-    
+
     if (age <= 12) {
         remiseAge = 0.5;
         console.log("remise enfant");
@@ -294,7 +294,7 @@ function bonjourToi(prenom) {
     console.log("bonjour " + prenom);
 }
 
-function addition(a,b) {
+function addition(a, b) {
     return a + b;
 }
 
@@ -332,3 +332,96 @@ function exoFonctionB() {
     console.log(revelerAnimal(prompt("entrer un nombre entre 1 et 5")));
 }
 
+function distributeurBonbons() {
+    argent = Number(prompt("combien d'argent voulez vous insérez ?"));
+    while (argent >= 2) {
+        if (argent >= 2)
+            console.log("un bonbon pour toi");
+        argent -= 2;
+        console.log("il reste " + argent);
+    }
+    console.log("t'as plus une thune");
+}
+
+function defiPair() {
+    //techniquement c'est mieux non ?🤓☝
+    for (let i = 0; i <= 20; i += 2)
+        console.log(i);
+    //mais j'imagine que ça marche aussi
+    let nbr = 0;
+    while (nbr < 20) {
+        nbr++;
+        if (nbr % 2 == 0)
+            console.log(nbr);
+    }
+}
+
+function defiMultiplication(x, max) {
+    for (let i = 1; i <= max; i++)
+        console.log(x + " x " + i + " = " + i * x);
+}
+
+
+function fizzbuzz() {
+    for (let i = 1; i <= 20; i++) {
+        if (i % 3 == 0 && i % 5 == 0) {
+            console.log("FizzBuzz");
+        } else if (i % 3 == 0) {
+            console.log("Fizz");
+        } else if (i % 5 == 0) {
+            console.log("Buzz");
+        } else {
+            console.log(i);
+        }
+    }
+}
+
+function comptageVoyelles(text) {
+    const voyelles = ["a", "e", "i", "o", "u", "y", "é", "è", "ê", "ô", "â", "à", "î", "ï"];
+    let ammount = 0;
+    text.split('').forEach((element) => ammount += voyelles.includes(element.toLowerCase()) ? 1 : 0);
+    console.log(ammount);
+}
+
+function pyramide(size) {
+    // même pas besoins de faire 2 for ☺
+    for (let i = 0; i <= size; i++)
+        console.log(" ".repeat(size - i) + "*".repeat(i * 2 + 1));
+}
+
+function devinette() {
+    rng = Math.round(Math.random() * 99) + 1;
+    while (parseInt(prompt("Devine un nombre GL"))!= rng) 
+        console.log(rng);
+    console.log("c'est un coup de chance");
+}
+
+
+
+function spammeur() {
+    for (let i = 0; i < 5; i++)
+        console.log(5);
+}
+
+function monterEscalier() {
+    for (let i = 1; i <=10; i++)
+        console.log(i);
+}
+
+function armeePairs() {
+    for (let i = 1; i <= 20; i++) {
+        if (i%2 == 0) 
+            console.log(i);
+    }
+}
+
+function armeePairs() {
+    for (let i = 1; i <= 30; i++) {
+        if (i%3 == 0)
+            console.log(i);
+    }
+}
+
+function oracleParity(nbr) {
+    return parseInt(nbr) % 2 == 0 ? "pair": "impair";
+}
