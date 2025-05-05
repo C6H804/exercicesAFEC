@@ -161,7 +161,7 @@ function clearText() {
 
 
 function findNextSquare(sq) {
-    return Math.sqrt(sq) % 1 ? -1 : Math.pow(Math.sqrt(sq) + 1, 2);
+    return Math.sqrt(sq) % 1 != 0 ? -1 : Math.pow(Math.sqrt(sq) + 1, 2);
 }
 
 function validatePIN(pin) {
@@ -344,9 +344,10 @@ function distributeurBonbons() {
 }
 
 function defiPair() {
-    //techniquement c'est mieux non ?🤓☝
+    //techniquement ça marche🤓☝
     for (let i = 0; i <= 20; i += 2)
         console.log(i);
+
     //mais j'imagine que ça marche aussi
     let nbr = 0;
     while (nbr < 20) {
@@ -377,7 +378,7 @@ function fizzbuzz() {
 }
 
 function comptageVoyelles(text) {
-    const voyelles = ["a", "e", "i", "o", "u", "y", "é", "è", "ê", "ô", "â", "à", "î", "ï"];
+    const voyelles = "aeiouyéèêôâàîï";
     let ammount = 0;
     text.split('').forEach((element) => ammount += voyelles.includes(element.toLowerCase()) ? 1 : 0);
     console.log(ammount);
@@ -391,7 +392,7 @@ function pyramide(size) {
 
 function devinette() {
     rng = Math.round(Math.random() * 99) + 1;
-    while (parseInt(prompt("Devine un nombre GL"))!= rng) 
+    while (parseInt(prompt("Devine un nombre GL")) != rng)
         console.log(rng);
     console.log("c'est un coup de chance");
 }
@@ -404,24 +405,254 @@ function spammeur() {
 }
 
 function monterEscalier() {
-    for (let i = 1; i <=10; i++)
+    for (let i = 1; i <= 10; i++)
         console.log(i);
 }
 
 function armeePairs() {
     for (let i = 1; i <= 20; i++) {
-        if (i%2 == 0) 
+        if (i % 2 == 0)
             console.log(i);
     }
 }
 
 function armeePairs() {
     for (let i = 1; i <= 30; i++) {
-        if (i%3 == 0)
+        if (i % 3 == 0)
             console.log(i);
     }
 }
 
 function oracleParity(nbr) {
-    return parseInt(nbr) % 2 == 0 ? "pair": "impair";
+    return parseInt(nbr) % 2 == 0 ? "pair" : "impair";
+}
+
+
+var maxSequence = function (arr) {
+    let results = new Array();
+    for (let size = 0; size <= arr.length; size++) {
+        for (let position = 0; position <= arr.length - size; position++) {
+            values = [];
+            for (let i = position; i < position + size; i++) {
+                values.push(arr[i]);
+            }
+            results.push(values);
+        }
+    }
+    let max = [[0], 0];
+    results.forEach((item, index) => {
+        let ammount = 0;
+        item.forEach((element) => {
+            ammount += element;
+        });
+        if (ammount >= max[1]) {
+            max[0][0] = item;
+            max[1] = ammount;
+        }
+    });
+    console.log(max[0][0]);
+    return max[1] > 0 ? max[1] : 0;
+}
+
+
+
+function tableauDefiA() {
+    let animaux = ["chien", "chat", "lapin"];
+    let couleurs = ["rouge", "vert", "bleu"];
+    console.log(couleurs[1]);
+    animaux[0] = "hamster";
+    console.log(animaux);
+    animaux.push("perroquet");
+    animaaux = animaux.slice(1);
+    console.log(animaux.includes("chat"));
+    console.log(animaux.join(' ') + " " + couleurs.join(' '));
+    let nombres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+
+    let double = [1, 2, 2, 3, 4, 4, 5];
+    console.log(double.filter((element, index) => index == double.indexOf(element)));
+    console.log(displayArray(['Pomme', 'Banane', 'Abricot', 'Cerise']));
+    console.log(displayArray2(['Pomme', 'Banane', 'Abricot', 'Cerise']));
+    console.log(displayArray3(['Pomme', 'Banane', 'Abricot', 'Cerise'], true));
+
+    console.log(sortWordsInString("je suis en train d'apprendre le JavaScript", true));
+
+    console.log(filterPair([0, 1, 2, 3, 4, 5, 6, 8, 7, 9, 8, 4, 89, 84, 8, 94, 5]));
+    console.log(roundDownArray([3.7, 8.4, 2.1, 5.9]));
+    console.log(roundDownArrayAmmount([3.7, 8.4, 2.1, 5.9]));
+    console.log(averageOfArray([3.7, 8.4, 2.1, 5.9]));
+}
+
+function displayArray(tab) {
+    return tab.join(' ');
+}
+
+function displayArray2(tab) {
+    return tab.slice(0, -1).join(', ') + " et " + tab[tab.length - 1];
+}
+
+function displayArray3(tab, useAnd) {
+    let message = useAnd ? " et " : ", ";
+    return tab.slice(0, -1).join(', ') + message + tab[tab.length - 1];
+}
+
+function sortWordsInString(str, desc) {
+    arr = str.trim().split(' ');
+    arr.sort();
+    return desc ? arr.reverse().join(' ') : arr.join(' ');
+}
+
+
+function filterPair(tab) {
+    tab = tab.filter((value) => value % 2 == 0);
+    return tab.map((x) => x * 2);
+}
+
+function roundDownArray(tab) {
+    return tab.map((x) => Math.floor(x));
+}
+
+function roundDownArrayAmmount(tab) {
+    return tab.map((x) => Math.floor(x)).reduce((ammount, x) => ammount + x);
+}
+
+function averageOfArray(tab) {
+    return tab.reduce((ammount, x) => ammount + x) / tab.length;
+}
+
+
+
+
+let grimoire = ["bave de crapaud", "plume de phénix", "racine de mandragore"];
+function ajouterIngredient() {
+    ingredient = '';
+    while (ingredient == '')
+        ingredient = prompt("quel ingrédient souhaitez vous ajouter ?");
+    grimoire.push(ingredient);
+}
+
+function afficherGrimoire() {
+    tab = grimoire;
+    let bodyE = document.getElementsByTagName("body");
+    let div = document.createElement("div");
+    div.id = "liste";
+    tab.forEach((element) => {
+        let ingr = document.createElement("p");
+        ingr.innerHTML = element;
+        div.appendChild(ingr);
+    });
+    bodyE[0].appendChild(div);
+}
+
+function analyserPotion() {
+    tab = grimoire;
+    ammount = 0;
+    tab.forEach((x) => {
+        ammount += x.length;
+    });
+    console.log(ammount);
+    alert("A. + " + tab.length + "\nB. " + ammount);
+}
+
+//You are given an array (which will have a length of at least 3, but could be very large) containing integers.
+// The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N.
+// Write a method that takes the array as an argument and returns this "outlier" N.
+
+
+function findOutlier(integers) {
+    let oddIntruder = 0;
+    integers.slice(0, 3).forEach((x) => oddIntruder += Math.abs(x) % 2);
+    oddIntruder = oddIntruder > 1 ? 0 : 1;
+    returnintegers.filter((x) => x % 2 == oddIntruder)[0];
+}
+
+
+
+// -objets-
+
+function defi1Objet() {
+    let utilisateur = { nom: "alan", age: 21, ville: "Saint Paul Les Dax" };
+    console.log(utilisateur);
+    utilisateur.ville = "Dax";
+    utilisateur.age++;
+    utilisateur.estEtudiant = true;
+    console.log(utilisateur);
+    afficherInfo(utilisateur);
+}
+
+function afficherInfo(obj) {
+    console.log("je m'appel " + obj.nom + ", j'ai " + obj.age + " et j'habite à " + obj.ville);
+}
+
+function tableauObjet() {
+    let utilisateur = [
+        { nom: "Patrick", age: 41, ville: "Paris" },
+        { nom: "Alice", age: 15, ville: "Marseille" },
+        { nom: "Stéphane", age: 23, ville: "Dax" }
+    ];
+    utilisateur.forEach((element) => {
+        console.log(element.nom);
+    });
+}
+
+
+
+let bibliotheques = [
+    { titre: "Martine à la montagne", auteur: "un génie", anneePublication: 1979, estDisponible: true },
+    { titre: "Le seigneur des anneaux", auteur: "JRR Tolkien", anneePublication: 1954, estDisponible: false },
+    { titre: "Le mythe de sisyphe", auteur: "Albert Camus", anneePublication: 1942, estDisponible: true }
+];
+
+function bibliotheque() {
+
+    bibliotheques.forEach((element) => {
+        if (element.estDisponible)
+            console.log(Object.values(element).join(' | ').slice(0, -7));
+    });
+}
+
+function emprunterLivre(titre) {
+    bibliotheques.forEach((element) => {
+        if (element.titre == titre) {
+            console.log(element.estDisponible ? "Livre emprunté avec succés" : "Ce livre n'est pas disponible");
+            element.estDisponible = false;
+        }
+    });
+}
+
+function rendreLivre(titre) {
+    bibliotheque.forEach((element) => {
+        if (element.titre == titre) {
+            element.estDisponible = true;
+        }
+    });
+    console.log("Merci pour le retour du livre");
+}
+
+
+
+function createurFicheFilms() {
+    let film = {
+        titre: "Inception",
+        realisateur: "Christopher Nolan",
+        annee: 2010,
+        duree: 148,
+        vu: false
+    };
+
+    film.vu = prompt("as-tu déjà vu ce film ?") == "oui" ? true : false;
+    if (film.vu == true) {
+        film.note = parseInt(Math.round(prompt("donnez une note de 1 à 5 à ce film")));
+        while (isNaN(film.note) == true || film.note > 5 || film.note < 1) {
+            film.note = parseInt(Math.round(prompt("donnez une note de 1 à 4 à ce film")));
+        }
+    }
+    afficherFilm(film);
+}
+
+function afficherFilm(obj) {
+    let target = document.getElementById("containerFilm");
+    let film = document.createElement("p");
+    film.innerHTML = (Object.values(obj).join("<br>"));
+    target.appendChild(film);
 }
