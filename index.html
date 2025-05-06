@@ -6,25 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script defer src="script.js"></script>
+    <style>
+        .animate {
+            animation: myAnim 0.5s ease-in-out 0s 1 normal forwards;
+        }
+
+        @keyframes myAnim {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Exercice du 23/04</h1>
-    <div class="aaa"></div>
-    <div class="aaa"></div>
+    <!-- <h1>Exercice du 23/04</h1> -->
 
-    <div class="aaa"></div>
-    <div class="aaa"></div>
-    <div class="aaa"></div>
 
-    <button onclick="ajouterIngredient()">Ajouter ingrédient</button>
+    <!-- <button onclick="ajouterIngredient()">Ajouter ingrédient</button>
     <button onclick="analyserPotion()">Analyser le grimoire</button>
-    <button onclick="afficherGrimoire()">Afficher le grimoire</button>
+    <button onclick="afficherGrimoire()">Afficher le grimoire</button> -->
 
     <div class="container-film" id="containerFilm">
-
     </div>
-
+    <h2>citations :</h2>
+    <div class="container-citation" id="containerCitation">
+        <blockquote id="quoteRng"></blockquote>
+        <blockquote id="auteur"></blockquote>
+        <button onclick="quoteRng()">Afficher une citation aléatoire</button>
+        <button onclick="copyQuote()">copier</button>
+        <button onclick="tweetQuote()">partager sur twitter</button>
+    </div>
 
 </body>
 

@@ -631,6 +631,7 @@ function rendreLivre(titre) {
 
 
 
+
 function createurFicheFilms() {
     let film = {
         titre: "Inception",
@@ -655,4 +656,75 @@ function afficherFilm(obj) {
     let film = document.createElement("p");
     film.innerHTML = (Object.values(obj).join("<br>"));
     target.appendChild(film);
+}
+
+// version de base
+// const quotesList = [
+//     // citation - nom auteur
+//     "La vie est un mystère qu'il faut vivre, et non un problème à résoudre. - Gandhi",
+//     "La vie est un défi, relève-le ! - Mère Teresa",
+//     "La simplicité est la sophistication suprême. - Léonard de Vinci",
+//     "La vie est un rêve, fais-en une réalité. - Antoine de Saint-Exupéry",
+//     "Quand on veut quelque chose, tout l'univers conspire à nous permettre de réaliser notre rêve. - Paulo Coelho",
+//     "Il n'y a pas de chemin vers le bonheur, le bonheur est le chemin. - Bouddha",
+//     "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès. - Albert Schweitzer",
+//     "Choisir ou conduire, il faut BOIRE ! - Alan",
+//     "Ce qui ne nous tue pas nous rend plus fort. - Friedrich Nietzsche",
+//     "Cela ne fait rien de mal, mais cela ne fait pas de bien non plus. - Albert Einstein",
+//     "Celui qui n'a jamais fait d'erreurs n'a jamais essayé quelque chose de nouveau. - Albert Einstein",
+//     "Le meilleur moyen de prédire l'avenir est de l'inventer. - Alan Kay",
+//     "Le meilleur moyen de se trouver est de se perdre au service des autres. - Mahatma Gandhi"
+// ];
+// let target = document.getElementById("quoteRng");
+
+// function quoteRng() {
+//     let messageId = Math.round(Math.random() * (quotesList.length - 1));
+//     target.innerHTML = target.innerHTML != quotesList[messageId] ? quotesList[messageId] : quotesList[(messageId + 1) % quotesList.length];
+// }
+
+
+// Version de bonus ---
+const quotesList = [
+    // citation - nom auteur
+    "La vie est un mystère qu'il faut vivre, et non un problème à résoudre. - Gandhi",
+    "La vie est un défi, relève-le ! - Mère Teresa",
+    "La simplicité est la sophistication suprême. - Léonard de Vinci",
+    "La vie est un rêve, fais-en une réalité. - Antoine de Saint-Exupéry",
+    "Quand on veut quelque chose, tout l'univers conspire à nous permettre de réaliser notre rêve. - Paulo Coelho",
+    "Il n'y a pas de chemin vers le bonheur, le bonheur est le chemin. - Bouddha",
+    "Le succès n'est pas la clé du bonheur. Le bonheur est la clé du succès. - Albert Schweitzer",
+    "Choisir ou conduire, il faut BOIRE ! - Alan",
+    "Ce qui ne nous tue pas nous rend plus fort. - Friedrich Nietzsche",
+    "Cela ne fait rien de mal, mais cela ne fait pas de bien non plus. - Albert Einstein",
+    "Celui qui n'a jamais fait d'erreurs n'a jamais essayé quelque chose de nouveau. - Albert Einstein",
+    "Le meilleur moyen de prédire l'avenir est de l'inventer. - Alan Kay",
+    "Le meilleur moyen de se trouver est de se perdre au service des autres. - Mahatma Gandhi"
+];
+let target = document.getElementById("quoteRng");
+let author = document.getElementById("auteur");
+
+function quoteRng() {
+    target.className = "animate";
+    author.className = "animate";
+    let messageId = Math.round(Math.random() * (quotesList.length - 1));
+    message = quotesList[messageId].split(" - ");
+    messageId = target.innerHTML != message[0] ? messageId : (messageId + 1) % quotesList.length;
+    target.innerHTML = quotesList[messageId].split(" - ")[0];
+    author.innerHTML = "- " + quotesList[messageId].split(" - ")[1];
+}
+
+
+target.addEventListener("animationend", (event) => {
+    target.className = "";
+    author.className = "";
+});
+
+
+function copyQuote() {
+    navigator.clipboard.writeText(target.innerHTML + " " + author.innerHTML);
+}
+
+function tweetQuote() {
+    text = encodeURIComponent(target.innerHTML + " " + author.innerHTML);
+    window.open("http://twitter.com/intent/tweet?original_referer=" + "&text=" + text, "_blank");
 }
