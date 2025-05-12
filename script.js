@@ -732,7 +732,7 @@ function tweetQuote() {
 let champResultatAnimaux = document.getElementById("resultat");
 
 function reponseBonne() {
-    champResultatAnimaux.innerHTML = "Bonne réponse"; 
+    champResultatAnimaux.innerHTML = "Bonne réponse";
     champResultatAnimaux.className = "green";
 }
 
@@ -755,23 +755,23 @@ let targetCamp = document.getElementById("camp");
 
 function ajouterObjetSac() {
     value = document.getElementById("objetSelect").value;
-    ajouterObjetExplorateur(value,targetSac,targetCamp);
+    ajouterObjetExplorateur(value, targetSac, targetCamp);
 }
 
-function ajouterObjetExplorateur(value, target,movToTarget) {
+function ajouterObjetExplorateur(value, target, movToTarget) {
     let obj = document.createElement("div");
     obj.id = idExplorateur++;
     obj.innerText = value;
     let deleteBtn = document.createElement("button");
     deleteBtn.innerText = "supprimer";
     deleteBtn.onclick = function () {
-        supprimerObjetExplorateur(obj.id,target);
+        supprimerObjetExplorateur(obj.id, target);
     };
 
     let moveToBtn = document.createElement("button");
     moveToBtn.innerText = "déplacer";
     moveToBtn.onclick = function () {
-        deplacerObjet(obj.id, target,movToTarget);
+        deplacerObjet(obj.id, target, movToTarget);
     };
 
     obj.appendChild(deleteBtn);
@@ -787,6 +787,57 @@ function supprimerObjetExplorateur(id, target) {
 
 function deplacerObjet(id, origin, target) {
     let obj = document.getElementById(id);
-    ajouterObjetExplorateur(obj.innerText.substring(0,obj.innerText.length - "supprimerdéplacer".length), target,origin);
+    ajouterObjetExplorateur(obj.innerText.substring(0, obj.innerText.length - "supprimerdéplacer".length), target, origin);
     supprimerObjetExplorateur(id, origin);
 }
+
+let pacc = document.getElementById("pacc");
+pacc.addEventListener("click", function () {
+    if (pacc.className == "red") {
+        pacc.className = "green";
+    } else {
+        pacc.className = "red";
+    }
+});
+// peut aussi utiliser domContentLoaded pour attendre le chargement de la page
+
+
+
+let aas = document.getElementById("aas");
+aas.addEventListener("mouseenter", function () {
+    aas.style.transform = "scale(1.5)";
+});
+aas.addEventListener("mouseout", function () {
+    aas.style.transform = "scale(1)";
+});
+
+let renderCompteurClick = document.getElementById("renderCompteurClick");
+document.getElementById("compteurClick").addEventListener("click", function () {
+    renderCompteurClick.innerText = parseInt(renderCompteurClick.innerText) + 1;
+});
+
+
+let maxClick = document.getElementById("maxClick");
+
+maxClick.addEventListener("click", function () {
+    let nombreRestant = parseInt(maxClick.innerText.substring(21, 22));
+    if (nombreRestant > 1) {
+        maxClick.innerText = "se désactiveras dans " + (nombreRestant - 1) + " clicks";
+    }
+    else {
+        maxClick.innerText = "bouton désactivé";
+        maxClick.disabled = true;
+    }
+});
+
+
+document.getElementById("addP").addEventListener("click", function (event) {
+    let p = document.createElement("p");
+    p.innerText = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda praesentium laborum facilis quisquam corporis voluptates impedit labore excepturi itaque soluta earum blanditiis sed quas id, maiores qui fugiat alias. Molestias?";
+    document.getElementById("containerParagraphEventA").appendChild(p);
+});
+
+
+document.getElementById("supprimerD").addEventListener("click", function (event) {
+    event.target.remove();
+});
