@@ -20,6 +20,14 @@
                 opacity: 1;
             }
         }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
     </style>
 </head>
 
@@ -40,6 +48,33 @@
         <button onclick="quoteRng()">Afficher une citation aléatoire</button>
         <button onclick="copyQuote()">copier</button>
         <button onclick="tweetQuote()">partager sur twitter</button>
+    </div>
+
+    <div class="quizzAnimaux">
+        <h2>Quel animal miaule ?</h2>
+        <button onclick="reponseFausse()">Le chien</button>
+        <button onclick="reponseBonne()">Le chat</button>
+        <button onclick="reponseFausse()">La vache</button>
+        <p id="resultat"></p>
+        <button onclick="resetAnimaux()">Réessayer</button>
+    </div>
+
+    <div class="campExplorateur">
+        <h2>Camp de l'explorateur</h2>
+        <select id="objetSelect">
+            <option value="tente">Tente</option>
+            <option value="feu">Feu de camp</option>
+            <option value="boussole">Boussole</option>
+            <option value="jumelles">Jumelles</option>
+        </select>
+        <button onclick="ajouterObjetSac()">Ajouter au sac</button>
+
+        <h3>Sac à dos</h3>
+        <div id="sac" style="border: 1px solid gray; padding: 10px; min-height: 50px;"></div>
+
+
+        <h3>Zone de campement</h3>
+        <div id="camp" style="border: 1px solid gray; padding: 10px; min-height: 50px;"></div>
     </div>
 
 </body>

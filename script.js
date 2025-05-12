@@ -728,3 +728,65 @@ function tweetQuote() {
     text = encodeURIComponent(target.innerHTML + " " + author.innerHTML);
     window.open("http://twitter.com/intent/tweet?original_referer=" + "&text=" + text, "_blank");
 }
+
+let champResultatAnimaux = document.getElementById("resultat");
+
+function reponseBonne() {
+    champResultatAnimaux.innerHTML = "Bonne réponse"; 
+    champResultatAnimaux.className = "green";
+}
+
+function reponseFausse() {
+    champResultatAnimaux.innerHTML = "Mauvaise réponse";
+    champResultatAnimaux.className = "red";
+}
+
+function resetAnimaux() {
+    champResultatAnimaux.removeChild(champResultatAnimaux.firstChild);
+    champResultatAnimaux.className = "";
+}
+
+
+
+idExplorateur = 0;
+let targetSac = document.getElementById("sac");
+let targetCamp = document.getElementById("camp");
+
+
+function ajouterObjetSac() {
+    value = document.getElementById("objetSelect").value;
+    ajouterObjetExplorateur(value,targetSac,targetCamp);
+}
+
+function ajouterObjetExplorateur(value, target,movToTarget) {
+    let obj = document.createElement("div");
+    obj.id = idExplorateur++;
+    obj.innerText = value;
+    let deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "supprimer";
+    deleteBtn.onclick = function () {
+        supprimerObjetExplorateur(obj.id,target);
+    };
+
+    let moveToBtn = document.createElement("button");
+    moveToBtn.innerText = "déplacer";
+    moveToBtn.onclick = function () {
+        deplacerObjet(obj.id, target,movToTarget);
+    };
+
+    obj.appendChild(deleteBtn);
+    obj.appendChild(moveToBtn);
+    target.appendChild(obj);
+}
+
+function supprimerObjetExplorateur(id, target) {
+    let obj = document.getElementById(id);
+    target.removeChild(obj);
+
+}
+
+function deplacerObjet(id, origin, target) {
+    let obj = document.getElementById(id);
+    ajouterObjetExplorateur(obj.innerText.substring(0,obj.innerText.length - "supprimerdéplacer".length), target,origin);
+    supprimerObjetExplorateur(id, origin);
+}
