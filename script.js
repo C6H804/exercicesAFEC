@@ -841,3 +841,61 @@ document.getElementById("addP").addEventListener("click", function (event) {
 document.getElementById("supprimerD").addEventListener("click", function (event) {
     event.target.remove();
 });
+
+
+// Liste fixe de fruits
+const fruits = ["fraise", "banane", "kiwi magique", "pomme", "ananas", "framboise", "mangue"];
+
+
+let compteur = 0; // Compteur initialisé à zéro
+let indexDepart = 0; // Point de départ dans le tableau
+
+// Fonction de préparation
+document.getElementById("btnSmoothie").addEventListener("click", function (event) {
+    let recipe = [];
+    let availableFruits = [...fruits]; // créer une copie de fruits
+    
+    for (let i = 0; i < 3; i++) {
+        let random = Math.floor(Math.random() * availableFruits.length);
+        recipe.push(availableFruits[random]);
+        availableFruits.splice(random, 1);
+    }
+    compteur++;
+    afficherSmoothie(document.getElementById("resultatSmoothie"), recipe);
+    document.getElementById("compteurSmoothie").innerText = "Smoothies préparé : " + compteur;
+    event.target.disabled = true;
+});
+
+
+function afficherSmoothie(target, recipe) {
+    recipe.forEach((element) => {
+        if (element == "kiwi magique")
+            target.style.color = "green";
+        target.appendChild(document.createElement("p")).innerText = element;
+    });
+}
+
+// Fonction de reset
+document.getElementById("btnBoire").addEventListener("click", function (event) {
+    document.getElementById("resultatSmoothie").innerHTML = "";
+    document.getElementById("btnSmoothie").disabled = false;
+
+});
+
+
+
+
+document.querySelectorAll(".accordion__bloc").forEach((element,index) => {
+    element.addEventListener("click", function (event) {
+        let awnser = document.querySelectorAll(".accordion__answer-bloc")[index];
+        let carret = document.querySelectorAll(".caret")[index];
+
+        if (awnser.classList.contains("active")) {
+            awnser.classList.remove("active");
+            carret.classList.remove("caret-down");
+        } else {
+            awnser.classList.add("active");
+            carret.classList.add("caret-down");
+        }
+    });
+});
