@@ -883,19 +883,19 @@ document.getElementById("btnBoire").addEventListener("click", function (event) {
 });
 
 
-
-
 document.querySelectorAll(".accordion__bloc").forEach((element,index) => {
     element.addEventListener("click", function (event) {
         let awnser = document.querySelectorAll(".accordion__answer-bloc")[index];
         let carret = document.querySelectorAll(".caret")[index];
-
+        let content = document.querySelectorAll(".accordion__answer")[index];
         if (awnser.classList.contains("active")) {
             awnser.classList.remove("active");
             carret.classList.remove("caret-down");
+            awnser.style.height = "0px";
         } else {
             awnser.classList.add("active");
             carret.classList.add("caret-down");
+            awnser.style.height = content.clientHeight + "px";
         }
     });
 });
