@@ -29,14 +29,9 @@
         }
 
 
-
-
-
-
-
-
-
-
+/* 
+---------------------------------- acordéon ----------------------------------
+*/
         .accordion__bloc::after {
             content: "";
             display: block;
@@ -75,6 +70,53 @@
             cursor: pointer;
             user-select: none;
         }
+
+/* --------------------------- MODAL ---------------------------- */
+
+
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 0.5em;
+    width: 300px;
+    text-align: center;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+}
+.modal-header button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px;
+}
+.modal-footer button {
+    cursor: pointer;
+    border: none;
+}
+
+
 
 
     </style>
@@ -175,6 +217,7 @@
             </div>
         </div>
     </div>
+    <button id="openShareModal">Partager cet article</button>
 
 
     <script defer src="script.js"></script>

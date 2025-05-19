@@ -899,3 +899,50 @@ document.querySelectorAll(".accordion__bloc").forEach((element,index) => {
         }
     });
 });
+
+
+
+document.getElementById("openShareModal").addEventListener("click", function (event) {
+    let modalBigContainer = document.createElement("div");
+    let modalContainer = document.createElement("div");
+    let modalHeader = document.createElement("div");
+    let modalBody = document.createElement("div");
+    let modalFooter = document.createElement("div");
+    let closeBtn = document.createElement("button");
+    let btnA = document.createElement("button");
+    let btnB = document.createElement("button");
+    let btnC = document.createElement("button");
+    let titleModal = document.createElement("h2");
+
+    btnA.innerText = "Facebook";
+    btnB.innerText = "Twitter";
+    btnC.innerText = "LinkedIn";
+
+    closeBtn.innerText = "X";
+    titleModal.innerText = "Partager cette page";
+
+    modalContainer.className = "modal";
+    modalHeader.className = "modal-header";
+    modalBody.className = "modal-body";
+    modalFooter.className = "modal-footer";
+    modalBigContainer.className = "modal-container";
+
+
+    closeBtn.addEventListener("click", function () {
+        document.body.removeChild(modalBigContainer);
+    });
+
+    modalHeader.appendChild(closeBtn);
+    modalBody.appendChild(titleModal);
+    modalFooter.appendChild(btnA);
+    modalFooter.appendChild(btnB);
+    modalFooter.appendChild(btnC);
+    
+    modalContainer.appendChild(modalHeader);
+    modalContainer.appendChild(modalBody);
+    modalContainer.appendChild(modalFooter);
+    modalBigContainer.appendChild(modalContainer);
+    document.body.appendChild(modalBigContainer);
+
+
+});
